@@ -91,7 +91,10 @@
         "serve": [
             "@php vendor/bin/testbench serve --host=127.0.0.1 --port=8888"
         ],
-        "test": "pest",
+        "test": [
+            "@php scripts/clean-testbench-migrations.php",
+            "pest"
+        ],
         "test-coverage": "pest --coverage",
         "analyse": "phpstan analyse",
         "format": "pint",

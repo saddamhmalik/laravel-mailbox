@@ -42,4 +42,4 @@ jobs:
         run: vendor/bin/phpstan analyse --memory-limit=512M
 
       - name: Run tests
-        run: vendor/bin/pest
+        run: composer test

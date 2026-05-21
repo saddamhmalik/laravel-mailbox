@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaravelMailbox\Tests;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\RefreshDatabaseState;
 use LaravelMailbox\Providers\MailboxServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
@@ -21,13 +22,29 @@ abstract class TestCase extends Orchestra
         ];
     }
 
-    protected function defineDatabaseMigrations(): void
+    protected function beforeRefreshingDatabase(): void
     {
-        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/create_mailbox_emails_table.php');
+        RefreshDatabaseState::$migrated = false;
+        RefreshDatabaseState::$inMemoryConnections = [];
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    protected function migrateFreshUsing(): array
+    {
+        return array_merge($this->shouldSeed() ? ['--seed' => $this->shouldSeed()] : [], [
+            '--drop-views' => $this->shouldDropViews(),
+            '--drop-types' => $this->shouldDropTypes(),
+            '--path' => realpath(__DIR__.'/../database/migrations/create_mailbox_emails_table.php'),
+            '--realpath' => true,
+        ]);
     }
 
     protected function defineEnvironment($app): void
     {
+        $app['config']->set('TESTBENCH_WITHOUT_DEFAULT_MIGRATIONS', true);
+
         $app['config']->set('app.key', 'base64:'.base64_encode(random_bytes(32)));
         $app['config']->set('app.env', 'testing');
         $app['config']->set('database.default', 'testing');
