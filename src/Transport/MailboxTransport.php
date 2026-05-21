@@ -9,7 +9,6 @@ use LaravelMailbox\Support\EmailMessageParser;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
 use Symfony\Component\Mime\Email;
-use Symfony\Component\Mime\RawMessage;
 
 final class MailboxTransport extends AbstractTransport
 {
@@ -32,26 +31,33 @@ final class MailboxTransport extends AbstractTransport
         if ($original instanceof Email) {
             $this->mailbox->capture($this->parser->parse(
                 $original,
-                mailer: config('mail.default'),
+                mailer: $this->mailerName(),
                 queue: $this->resolveQueue(),
             ));
 
             return;
         }
 
-        if ($original instanceof RawMessage) {
-            $this->mailbox->capture($this->parser->parseRaw(
-                $original,
-                mailer: config('mail.default'),
-                queue: $this->resolveQueue(),
-            ));
-        }
+        $this->mailbox->capture($this->parser->parseRaw(
+            $original,
+            mailer: $this->mailerName(),
+            queue: $this->resolveQueue(),
+        ));
+    }
+
+    private function mailerName(): ?string
+    {
+        $mailer = config('mail.default');
+
+        return is_string($mailer) ? $mailer : null;
     }
 
     private function resolveQueue(): ?string
     {
         if (app()->runningInConsole() && app()->bound('queue.connection')) {
-            return config('queue.default');
+            $queue = config('queue.default');
+
+            return is_string($queue) ? $queue : null;
         }
 
         return null;

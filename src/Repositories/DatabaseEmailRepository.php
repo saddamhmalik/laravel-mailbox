@@ -28,6 +28,9 @@ final class DatabaseEmailRepository implements EmailRepositoryContract
         return MailboxEmail::query()->find($id);
     }
 
+    /**
+     * @return LengthAwarePaginator<int, MailboxEmail>
+     */
     public function paginate(EmailFilterData $filter, int $perPage = 25): LengthAwarePaginator
     {
         return MailboxEmail::query()
@@ -36,6 +39,9 @@ final class DatabaseEmailRepository implements EmailRepositoryContract
             ->paginate($perPage);
     }
 
+    /**
+     * @return CursorPaginator<int, MailboxEmail>
+     */
     public function cursorPaginate(EmailFilterData $filter, int $perPage = 25): CursorPaginator
     {
         return MailboxEmail::query()

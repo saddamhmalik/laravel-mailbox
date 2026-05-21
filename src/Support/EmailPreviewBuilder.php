@@ -21,7 +21,7 @@ final class EmailPreviewBuilder
 
     private static function ensureDocument(string $html): string
     {
-        if (stri_contains($html, '<html')) {
+        if (str_contains(strtolower($html), '<html')) {
             return $html;
         }
 

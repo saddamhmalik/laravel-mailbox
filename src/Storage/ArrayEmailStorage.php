@@ -28,6 +28,9 @@ final class ArrayEmailStorage implements EmailStorageContract
         return $email;
     }
 
+    /**
+     * @return array<int, MailboxEmail>
+     */
     public function all(): array
     {
         return array_values($this->emails);

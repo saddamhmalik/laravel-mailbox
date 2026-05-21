@@ -32,6 +32,9 @@ final class CacheEmailStorage implements EmailStorageContract
         return $email;
     }
 
+    /**
+     * @return array<int, MailboxEmail>
+     */
     public function all(): array
     {
         return array_map(

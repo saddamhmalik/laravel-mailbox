@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace LaravelMailbox\Services;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Pagination\LengthAwarePaginator;
 use LaravelMailbox\Contracts\EmailRepositoryContract;
 use LaravelMailbox\Data\EmailFilterData;
 use LaravelMailbox\Models\MailboxEmail;
@@ -27,6 +27,9 @@ final class EmailQueryService
         return $this->repository->findByUuid($identifier);
     }
 
+    /**
+     * @return LengthAwarePaginator<int, MailboxEmail>
+     */
     public function paginate(EmailFilterData $filter, int $perPage = 25): LengthAwarePaginator
     {
         if ($this->arrayStorage !== null) {
@@ -36,6 +39,9 @@ final class EmailQueryService
         return $this->repository->paginate($filter, $perPage);
     }
 
+    /**
+     * @return LengthAwarePaginator<int, MailboxEmail>
+     */
     private function paginateArray(EmailFilterData $filter, int $perPage): LengthAwarePaginator
     {
         $collection = collect($this->arrayStorage?->all() ?? [])

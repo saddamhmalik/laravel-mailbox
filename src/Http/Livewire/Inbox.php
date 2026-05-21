@@ -137,10 +137,10 @@ final class Inbox extends Component
             return null;
         }
 
-        $selected = $emails->firstWhere('id', $this->selectedId);
-
-        if ($selected instanceof MailboxEmail) {
-            return $selected;
+        foreach ($emails->items() as $email) {
+            if ($email->id === $this->selectedId) {
+                return $email;
+            }
         }
 
         return MailboxEmail::query()->find($this->selectedId);
@@ -157,7 +157,8 @@ final class Inbox extends Component
             1,
         );
 
-        $first = $paginator->first();
+        $items = $paginator->items();
+        $first = $items[0] ?? null;
 
         return $first instanceof MailboxEmail ? $first->id : null;
     }

@@ -20,6 +20,9 @@ final class DatabaseEmailStorage implements EmailStorageContract
         return $this->repository->store($data);
     }
 
+    /**
+     * @return array<int, MailboxEmail>
+     */
     public function all(): array
     {
         return [];
