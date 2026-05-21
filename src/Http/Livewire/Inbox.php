@@ -131,6 +131,9 @@ final class Inbox extends Component
         ]);
     }
 
+    /**
+     * @param  LengthAwarePaginator<int, MailboxEmail>  $emails
+     */
     private function resolveSelected(LengthAwarePaginator $emails): ?MailboxEmail
     {
         if ($this->selectedId === null) {

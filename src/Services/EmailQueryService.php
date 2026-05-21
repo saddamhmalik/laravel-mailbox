@@ -79,7 +79,7 @@ final class EmailQueryService
         $page = max(1, (int) request()->get('page', 1));
         $items = $collection->slice(($page - 1) * $perPage, $perPage)->values();
 
-        return new \Illuminate\Pagination\LengthAwarePaginator(
+        return new LengthAwarePaginator(
             $items,
             $collection->count(),
             $perPage,
