@@ -12,6 +12,11 @@
         "mailpit"
     ],
     "license": "MIT",
+    "homepage": "https://github.com/saddamhmalik/laravel-mailbox",
+    "support": {
+        "issues": "https://github.com/saddamhmalik/laravel-mailbox/issues",
+        "source": "https://github.com/saddamhmalik/laravel-mailbox"
+    },
     "authors": [
         {
             "name": "Saddam Malik",
