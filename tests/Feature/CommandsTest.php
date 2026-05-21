@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-use Illuminate\Support\Facades\Mail;
 use LaravelMailbox\Models\MailboxEmail;
 
 it('clears captured emails', function (): void {
     MailboxEmail::query()->create([
-        'uuid' => (string) \Illuminate\Support\Str::uuid(),
+        'uuid' => (string) Illuminate\Support\Str::uuid(),
         'subject' => 'One',
         'sent_at' => now(),
     ]);
@@ -20,7 +19,7 @@ it('clears captured emails', function (): void {
 
 it('prunes old emails', function (): void {
     $old = MailboxEmail::query()->create([
-        'uuid' => (string) \Illuminate\Support\Str::uuid(),
+        'uuid' => (string) Illuminate\Support\Str::uuid(),
         'subject' => 'Old',
         'sent_at' => now()->subDays(30),
     ]);
@@ -31,7 +30,7 @@ it('prunes old emails', function (): void {
     ])->save();
 
     MailboxEmail::query()->create([
-        'uuid' => (string) \Illuminate\Support\Str::uuid(),
+        'uuid' => (string) Illuminate\Support\Str::uuid(),
         'subject' => 'New',
         'sent_at' => now(),
     ]);

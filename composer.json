@@ -12,6 +12,11 @@
         "mailpit"
     ],
     "license": "MIT",
+    "homepage": "https://github.com/saddamhmalik/laravel-mailbox",
+    "support": {
+        "issues": "https://github.com/saddamhmalik/laravel-mailbox/issues",
+        "source": "https://github.com/saddamhmalik/laravel-mailbox"
+    },
     "authors": [
         {
             "name": "Saddam Malik",
@@ -29,7 +34,7 @@
         "illuminate/view": "^12.0|^13.0",
         "livewire/livewire": "^3.5",
         "spatie/laravel-package-tools": "^1.18",
-        "symfony/mailer": "^7.2"
+        "symfony/mailer": "^7.2|^8.0"
     },
     "require-dev": {
         "larastan/larastan": "^3.0",
@@ -86,7 +91,10 @@
         "serve": [
             "@php vendor/bin/testbench serve --host=127.0.0.1 --port=8888"
         ],
-        "test": "pest",
+        "test": [
+            "@php scripts/clean-testbench-migrations.php",
+            "pest"
+        ],
         "test-coverage": "pest --coverage",
         "analyse": "phpstan analyse",
         "format": "pint",

@@ -22,17 +22,58 @@ A modern email testing and preview tool for Laravel — like MailHog or Mailpit,
 - Laravel 12+ (forward compatible with Laravel 13)
 - Livewire 3
 
+**Repository:** [github.com/saddamhmalik/laravel-mailbox](https://github.com/saddamhmalik/laravel-mailbox)
+
 ## Installation
 
 Laravel Mailbox is a **development and testing** tool. Install it as a dev dependency and use the `mailbox` mail driver only in `local` or `testing` environments.
 
 ### 1. Install the package
 
+#### From GitHub (use this until the package is on Packagist)
+
+Composer does not install from GitHub automatically. Add the [repository](https://github.com/saddamhmalik/laravel-mailbox) to your **Laravel application’s** `composer.json`, then require the package:
+
+```json
+{
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/saddamhmalik/laravel-mailbox"
+        }
+    ],
+    "require-dev": {
+        "laravel-mailbox/mailbox": "^1.0"
+    }
+}
+```
+
+```bash
+composer update laravel-mailbox/mailbox --dev
+```
+
+If you have not published a version tag yet, use the `main` branch instead:
+
+```json
+"laravel-mailbox/mailbox": "dev-main"
+```
+
+Release tags on GitHub (recommended):
+
+```bash
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+#### From Packagist (after publishing)
+
+Once the package is submitted to [Packagist](https://packagist.org) and linked to this repo, you can install without a `repositories` entry:
+
 ```bash
 composer require laravel-mailbox/mailbox --dev
 ```
 
-The service provider and `Mailbox` facade are registered automatically via Laravel package discovery.
+The service provider and `Mailbox` facade are registered automatically via Laravel package discovery in both cases.
 
 ### 2. Run the installer
 
@@ -249,7 +290,11 @@ Never expose the mailbox UI publicly in production without proper authentication
 
 ## Package development
 
+Clone the repository:
+
 ```bash
+git clone https://github.com/saddamhmalik/laravel-mailbox.git
+cd laravel-mailbox
 composer install
 composer setup
 composer serve

@@ -39,12 +39,12 @@ final class MailboxAssets
 
     public static function render(): string
     {
-        if (static::usesVite()) {
+        if (self::usesVite()) {
             return '';
         }
 
-        $css = static::cssUrl();
-        $js = static::jsUrl();
+        $css = self::cssUrl();
+        $js = self::jsUrl();
 
         return <<<HTML
 <link rel="stylesheet" href="{$css}">

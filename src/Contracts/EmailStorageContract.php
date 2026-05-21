@@ -11,6 +11,9 @@ interface EmailStorageContract
 {
     public function store(CapturedEmailData $data): MailboxEmail;
 
+    /**
+     * @return array<int, MailboxEmail>
+     */
     public function all(): array;
 
     public function flush(): void;

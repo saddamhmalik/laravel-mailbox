@@ -47,6 +47,9 @@ final class ArrayEmailRepository implements EmailRepositoryContract
         return null;
     }
 
+    /**
+     * @return LengthAwarePaginator<int, MailboxEmail>
+     */
     public function paginate(EmailFilterData $filter, int $perPage = 25): LengthAwarePaginator
     {
         $filtered = $this->filterEmails($filter);
@@ -62,6 +65,9 @@ final class ArrayEmailRepository implements EmailRepositoryContract
         );
     }
 
+    /**
+     * @return CursorPaginator<int, MailboxEmail>
+     */
     public function cursorPaginate(EmailFilterData $filter, int $perPage = 25): CursorPaginator
     {
         $filtered = $this->filterEmails($filter);
@@ -69,6 +75,7 @@ final class ArrayEmailRepository implements EmailRepositoryContract
         return new CursorPaginatorImpl(
             array_slice($filtered, 0, $perPage),
             $perPage,
+            null,
             ['path' => request()->url(), 'query' => request()->query()],
         );
     }

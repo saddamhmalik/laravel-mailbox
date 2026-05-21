@@ -10,6 +10,7 @@ use Symfony\Component\Mime\Email;
 final class AddressNormalizer
 {
     /**
+     * @param  array<int, Address>|null  $addresses
      * @return array<int, array{address: string, name: ?string}>
      */
     public static function fromEmailAddresses(?array $addresses): array
@@ -41,6 +42,9 @@ final class AddressNormalizer
         return $headers;
     }
 
+    /**
+     * @param  array<int, array{address: string, name: ?string}>|null  $addresses
+     */
     public static function formatAddressList(?array $addresses): string
     {
         if ($addresses === null || $addresses === []) {
@@ -50,7 +54,7 @@ final class AddressNormalizer
         return collect($addresses)
             ->map(static function (array $entry): string {
                 $name = $entry['name'] ?? null;
-                $address = $entry['address'] ?? '';
+                $address = $entry['address'];
 
                 return $name ? sprintf('%s <%s>', $name, $address) : $address;
             })

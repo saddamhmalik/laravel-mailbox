@@ -6,7 +6,7 @@ use LaravelMailbox\Models\MailboxEmail;
 
 it('renders the mailbox inbox route', function (): void {
     MailboxEmail::query()->create([
-        'uuid' => (string) \Illuminate\Support\Str::uuid(),
+        'uuid' => (string) Illuminate\Support\Str::uuid(),
         'subject' => 'Inbox test',
         'to' => [['address' => 'test@example.com', 'name' => null]],
         'from' => [['address' => 'from@example.com', 'name' => null]],
@@ -20,7 +20,7 @@ it('renders the mailbox inbox route', function (): void {
 
 it('deletes an email via route', function (): void {
     $email = MailboxEmail::query()->create([
-        'uuid' => (string) \Illuminate\Support\Str::uuid(),
+        'uuid' => (string) Illuminate\Support\Str::uuid(),
         'subject' => 'Delete me',
         'to' => [['address' => 'test@example.com', 'name' => null]],
         'sent_at' => now(),

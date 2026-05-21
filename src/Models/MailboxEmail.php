@@ -170,7 +170,7 @@ class MailboxEmail extends Model
     private function containsAddress(array $addresses, string $address): bool
     {
         foreach ($addresses as $entry) {
-            if (strcasecmp($entry['address'] ?? '', $address) === 0) {
+            if (strcasecmp($entry['address'], $address) === 0) {
                 return true;
             }
         }

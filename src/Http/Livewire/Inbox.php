@@ -6,14 +6,14 @@ namespace LaravelMailbox\Http\Livewire;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Url;
-use Livewire\Component;
-use Livewire\WithPagination;
 use LaravelMailbox\Contracts\MailboxContract;
 use LaravelMailbox\Data\EmailFilterData;
 use LaravelMailbox\Models\MailboxEmail;
 use LaravelMailbox\Services\EmailQueryService;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('mailbox::layouts.app')]
 final class Inbox extends Component
@@ -131,16 +131,19 @@ final class Inbox extends Component
         ]);
     }
 
+    /**
+     * @param  LengthAwarePaginator<int, MailboxEmail>  $emails
+     */
     private function resolveSelected(LengthAwarePaginator $emails): ?MailboxEmail
     {
         if ($this->selectedId === null) {
             return null;
         }
 
-        $selected = $emails->firstWhere('id', $this->selectedId);
-
-        if ($selected instanceof MailboxEmail) {
-            return $selected;
+        foreach ($emails->items() as $email) {
+            if ($email->id === $this->selectedId) {
+                return $email;
+            }
         }
 
         return MailboxEmail::query()->find($this->selectedId);
@@ -157,7 +160,8 @@ final class Inbox extends Component
             1,
         );
 
-        $first = $paginator->first();
+        $items = $paginator->items();
+        $first = $items[0] ?? null;
 
         return $first instanceof MailboxEmail ? $first->id : null;
     }

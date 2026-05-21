@@ -18,8 +18,14 @@ interface EmailRepositoryContract
 
     public function findById(int $id): ?MailboxEmail;
 
+    /**
+     * @return LengthAwarePaginator<int, MailboxEmail>
+     */
     public function paginate(EmailFilterData $filter, int $perPage = 25): LengthAwarePaginator;
 
+    /**
+     * @return CursorPaginator<int, MailboxEmail>
+     */
     public function cursorPaginate(EmailFilterData $filter, int $perPage = 25): CursorPaginator;
 
     public function delete(MailboxEmail $email): bool;

@@ -7,8 +7,6 @@ namespace LaravelMailbox\Providers;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Mail\MailManager;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
-use Livewire\Livewire;
 use LaravelMailbox\Contracts\EmailRepositoryContract;
 use LaravelMailbox\Contracts\EmailStorageContract;
 use LaravelMailbox\Contracts\MailboxContract;
@@ -25,6 +23,7 @@ use LaravelMailbox\Storage\ArrayEmailStorage;
 use LaravelMailbox\Storage\CacheEmailStorage;
 use LaravelMailbox\Storage\DatabaseEmailStorage;
 use LaravelMailbox\Support\EmailMessageParser;
+use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -189,5 +188,4 @@ final class MailboxServiceProvider extends PackageServiceProvider
             \LaravelMailbox\Models\MailboxEmail::resolveConnection($connection);
         }
     }
-
 }

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LaravelMailbox\Commands;
 
 use Illuminate\Console\Command;
+
 final class OpenCommand extends Command
 {
     protected $signature = 'mailbox:open';

@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use LaravelMailbox\Support\EmailPreviewBuilder;
 use LaravelMailbox\Support\EmailHeaderParser;
+use LaravelMailbox\Support\EmailPreviewBuilder;
 
 it('wraps plain text for html preview document', function (): void {
     $document = EmailPreviewBuilder::document(null, 'Hello world');
