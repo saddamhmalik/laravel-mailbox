@@ -21,6 +21,11 @@ abstract class TestCase extends Orchestra
         ];
     }
 
+    protected function defineDatabaseMigrations(): void
+    {
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations/create_mailbox_emails_table.php');
+    }
+
     protected function defineEnvironment($app): void
     {
         $app['config']->set('app.key', 'base64:'.base64_encode(random_bytes(32)));

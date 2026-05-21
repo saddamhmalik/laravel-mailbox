@@ -4,9 +4,6 @@ providers:
   - LaravelMailbox\Providers\MailboxServiceProvider
   - Livewire\LivewireServiceProvider
 
-migrations:
-  - database/migrations/create_mailbox_emails_table.php
-
 workbench:
   start: '/mailbox'
   install: true
