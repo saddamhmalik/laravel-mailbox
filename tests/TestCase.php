@@ -48,5 +48,4 @@ abstract class TestCase extends Orchestra
             'transport' => 'array',
         ]);
     }
-
 }

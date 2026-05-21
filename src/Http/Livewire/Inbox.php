@@ -6,14 +6,14 @@ namespace LaravelMailbox\Http\Livewire;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Livewire\Attributes\Layout;
-use Livewire\Attributes\Url;
-use Livewire\Component;
-use Livewire\WithPagination;
 use LaravelMailbox\Contracts\MailboxContract;
 use LaravelMailbox\Data\EmailFilterData;
 use LaravelMailbox\Models\MailboxEmail;
 use LaravelMailbox\Services\EmailQueryService;
+use Livewire\Attributes\Layout;
+use Livewire\Attributes\Url;
+use Livewire\Component;
+use Livewire\WithPagination;
 
 #[Layout('mailbox::layouts.app')]
 final class Inbox extends Component

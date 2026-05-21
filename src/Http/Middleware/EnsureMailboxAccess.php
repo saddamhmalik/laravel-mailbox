@@ -6,7 +6,6 @@ namespace LaravelMailbox\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use LaravelMailbox\Exceptions\AuthorizationException;
 use Symfony\Component\HttpFoundation\Response;
 
 final class EnsureMailboxAccess

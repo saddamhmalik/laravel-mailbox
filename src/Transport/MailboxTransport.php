@@ -6,8 +6,6 @@ namespace LaravelMailbox\Transport;
 
 use LaravelMailbox\Contracts\MailboxContract;
 use LaravelMailbox\Support\EmailMessageParser;
-use Stringable;
-use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mailer\SentMessage;
 use Symfony\Component\Mailer\Transport\AbstractTransport;
 use Symfony\Component\Mime\Email;
