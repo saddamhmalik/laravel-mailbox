@@ -1,0 +1,11 @@
+/vendor
+/workbench/storage
+/workbench/bootstrap/cache
+/node_modules
+/build
+.phpunit.cache
+.phpunit.result.cache
+package-lock.json
+.DS_Store
+.idea
+.vscode

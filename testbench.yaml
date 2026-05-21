@@ -1,0 +1,22 @@
+laravel: '@testbench'
+
+providers:
+  - LaravelMailbox\Providers\MailboxServiceProvider
+  - Livewire\LivewireServiceProvider
+
+migrations:
+  - database/migrations/create_mailbox_emails_table.php
+
+workbench:
+  start: '/mailbox'
+  install: true
+  health: false
+  discovers:
+    web: true
+    config: true
+
+env:
+  - APP_ENV=local
+  - MAIL_MAILER=mailbox
+  - MAILBOX_LOCAL_ONLY=false
+  - MAILBOX_STORAGE_DRIVER=database
